@@ -1,4 +1,4 @@
-package org.webskey.algorythms.Algorythms;
+package org.webskey.algorithms;
 
 import java.util.Arrays;
 
