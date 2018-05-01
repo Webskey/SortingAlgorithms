@@ -1,2 +1,2 @@
-# SortingAlgorythms
-## Examples of sorting arlgorythms.
+# SortingAlgorithms
+## Examples of sorting algorithms.

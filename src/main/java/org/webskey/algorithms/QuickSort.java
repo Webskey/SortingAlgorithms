@@ -2,54 +2,44 @@ package org.webskey.algorithms;
 
 import java.util.Arrays;
 
-public class QuickSort {
-	public static void sort(int[] tab, int low, int high) {
-		int piv = tab[high];
-		System.out.println("pivot: " +piv);
-		int j = low-1;		
-		for(int i = low; i <= high; i++) {
-			if(tab[i] <= piv) {
-				j++;
-				int temp = tab[i];
-				tab[i] = tab[j];
-				tab[j] = temp;
+class QuickSort {
+
+	int partition(int arr[], int low, int high)	{
+		int pivot = arr[high]; 
+		int i = (low-1); 
+		for (int j=low; j<high; j++) {
+			if (arr[j] <= pivot) {
+				i++;
+
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
 			}
 		}
-		System.out.println(Arrays.toString(tab));
-		System.out.println(j);
-		for(int i = j; i>1; i--) {			
-			sort1(tab, 0, i-1);
+
+		int temp = arr[i+1];
+		arr[i+1] = arr[high];
+		arr[high] = temp;
+
+		return i+1;
+	}
+
+	void sort(int arr[], int low, int high)	{
+		if (low < high)	{
+			int pi = partition(arr, low, high);
+
+			sort(arr, low, pi-1);
+			sort(arr, pi+1, high);
 		}
 	}
-	public static void sort1(int[] tab, int low, int high) {
-		int piv = tab[high];
-		System.out.println("pivot: " +piv);
-		int j = low-1;		
-		for(int i = low; i <= high; i++) {
-			if(tab[i] <= piv) {
-				j++;
-				int temp = tab[i];
-				tab[i] = tab[j];
-				tab[j] = temp;
-			}
-		}
-		System.out.println(Arrays.toString(tab));
-	}
-	public static void main(String[] args) {
-		int[] tab = {5, 2, 3, 6, 1, 7, 5, 8};
-		System.out.println(Arrays.toString(tab));
-		sort(tab, 0, tab.length-1);
 
-		/*System.out.println("DRUGIE");		
-		int[] tab1 = {5, 3, 2, 1, 5, 7, 6};
-		sort(tab1, 0, 3);		
+	public static void main(String args[]) {
+		int arr[] = {10, 7, 8, 9, 1, 5};
+		int n = arr.length;
 
-		System.out.println("Trzecie");		
-		int[] tab2 = {1, 3, 2, 5, 5, 7, 6};
-		sort(tab2, 0, 2);
+		QuickSort ob = new QuickSort();
+		ob.sort(arr, 0, n-1);
 
-		System.out.println("Czwarte");		
-		int[] tab3 = {1, 2, 3, 5, 5, 7, 6};
-		sort(tab3, 0, 1);*/
+		System.out.println(Arrays.toString(arr));
 	}
 }

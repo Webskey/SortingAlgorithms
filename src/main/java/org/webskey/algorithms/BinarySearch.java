@@ -19,6 +19,6 @@ public class BinarySearch {
 		int low = 0;
 		int high = tab.length-1;
 
-		System.out.println("Liczba "+find+" znaleziona na pozycji "+search(tab, find, low, high));
+		System.out.println("Liczba " + find + " znaleziona na pozycji " + search(tab, find, low, high));
 	}
 }
