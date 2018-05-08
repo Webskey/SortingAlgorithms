@@ -4,42 +4,27 @@ import java.util.Arrays;
 
 class QuickSort {
 
-	int partition(int arr[], int low, int high)	{
-		int pivot = arr[high]; 
-		int i = (low-1); 
-		for (int j=low; j<high; j++) {
-			if (arr[j] <= pivot) {
-				i++;
-
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+	public static void sort(int[] tab, int low, int high) {
+		int piv = tab[high];
+		int j = low-1;		
+		for(int i = low; i <= high; i++) {
+			if(tab[i] <= piv) {
+				j++;
+				int temp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = temp;
 			}
 		}
-
-		int temp = arr[i+1];
-		arr[i+1] = arr[high];
-		arr[high] = temp;
-
-		return i+1;
+		if(j-1 > low)
+			sort(tab, low, j-1);
+		if(j+1 < high)
+			sort(tab, j+1, high);
 	}
 
-	void sort(int arr[], int low, int high)	{
-		if (low < high)	{
-			int pi = partition(arr, low, high);
-
-			sort(arr, low, pi-1);
-			sort(arr, pi+1, high);
-		}
-	}
-
-	public static void main(String args[]) {
-		int arr[] = {10, 7, 8, 9, 1, 5};
-		int n = arr.length;
-
-		QuickSort ob = new QuickSort();
-		ob.sort(arr, 0, n-1);
-
-		System.out.println(Arrays.toString(arr));
+	public static void main(String[] args) {
+		int[] tab = {6, 2, 10, 7, 1, 7, 5, 4};
+		System.out.println("Array before sorting: " + Arrays.toString(tab));
+		sort(tab, 0, tab.length-1);
+		System.out.println("Array after sorting: " + Arrays.toString(tab));
 	}
 }
